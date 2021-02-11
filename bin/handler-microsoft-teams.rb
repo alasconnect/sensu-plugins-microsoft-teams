@@ -19,28 +19,28 @@ require 'erubis'
 
 class MicrosoftTeams < Sensu::Handler
   option :webhook_url,
-          description: 'Microsoft Teams Webhook URL'
-          short: '-w URL',
-          long: '--webhook URL'
+         description: 'Microsoft Teams Webhook URL',
+         short: '-w URL',
+         long: '--webhook URL'
 
   def incident_key
-      @event['client']['name'] + '/' + @event['check']['name']
+    @event['client']['name'] + '/' + @event['check']['name']
   end
 
   def handle
-      description = @event['check']['notification'] || build_description
-      post_data("#{incident_key}: #{description}")
+    description = @event['check']['notification'] || build_description
+    post_data("#{incident_key}: #{description}")
   end
 
   def build_description
-    template =  '<%=
-                 [
-                   @event["check"]["output"].gsub(\'"\', \'\\"\'),
-                   @event["client"]["address"],
-                   @event["client"]["subscriptions"].join(",")
-                 ].join(" : ")
-                 %>
-                 '
+    template = '<%=
+                [
+                  @event["check"]["output"].gsub(\'"\', \'\\"\'),
+                  @event["client"]["address"],
+                  @event["client"]["subscriptions"].join(",")
+                ].join(" : ")
+                %>
+                '
     eruby = Erubis::Eruby.new(template)
     eruby.result(binding)
   end
