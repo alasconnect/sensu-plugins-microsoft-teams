@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format located [here](https://github.com/sensu-plugins/community/blob/master/HOW_WE_CHANGELOG.md)
 
 ## [Unreleased]
+
+## [3.0.2] - 2020-02-10
+
+### Changed
+- Disabled Markdown on body
+
 ## [3.0.1] - 2020-02-10
 
 ### Fixed
