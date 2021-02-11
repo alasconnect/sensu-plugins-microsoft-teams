@@ -12,13 +12,13 @@ rvm:
 - 2.4.1
 script:
 - bundle exec rake default
-- gem build sensu-plugins-cpu-checks.gemspec
-- gem install sensu-plugins-cpu-checks-*.gem
+- gem build sensu-plugins-microsoft-teams.gemspec
+- gem install sensu-plugins-microsoft-teams-*.gem
 before_deploy:
 - bash -c "[ ! -d bonsai/ ] && git clone https://github.com/sensu/sensu-go-bonsai-asset.git bonsai || echo 'bonsai/ exists, skipping git clone'"
 deploy:
 - provider: script
-  script: bonsai/ruby-runtime/travis-build-ruby-plugin-assets.sh sensu-plugins-cpu-checks
+  script: bonsai/ruby-runtime/travis-build-ruby-plugin-assets.sh sensu-plugins-microsoft-teams
   skip_cleanup: true
   on:
     tags: true
